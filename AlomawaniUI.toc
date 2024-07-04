@@ -27,10 +27,15 @@ Libraries\LibSharedMedia-3.0\lib.xml
 
 ## Core ##
 AlomawaniUI.lua
+GUI.lua
+Commands.lua
+Media.lua
 
 ## Modules ##
-Modules\KeepBattlePet.lua
+Modules\Miscellaneous.lua
+Modules\BattlePet.lua
+Modules\SetupCVars.lua
 
 ## Options ##
 Options\Options.lua
-Options\OptionsKeepBattlePet.lua
+Options\OptionsBattlePet.lua

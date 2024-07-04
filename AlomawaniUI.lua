@@ -1,6 +1,7 @@
 local AlomawaniUI = LibStub('AceAddon-3.0'):NewAddon('AlomawaniUI', 'AceConsole-3.0', 'AceEvent-3.0', 'AceHook-3.0')
 local LibDualSpec = LibStub('LibDualSpec-1.0', true)
 
+local db
 local defaults = {
 	profile = {
 		modules = {
@@ -9,7 +10,9 @@ local defaults = {
 	}
 }
 
-local db
+function AlomawaniUI.Print(...)
+    _G.DEFAULT_CHAT_FRAME:AddMessage(strjoin('', '|cff00ff00', 'AlomawaniUI:|r ', ...))
+end
 
 function AlomawaniUI:OnInitialize()
 	self.db = LibStub('AceDB-3.0'):New('AlomawaniUIDB', defaults, true)
@@ -25,6 +28,8 @@ function AlomawaniUI:OnInitialize()
 	end
 
 	self:SetupOptions()
+	self:LoadCommands()
+	self:LoadMedia()
 end
 
 function AlomawaniUI:OnEnable()
