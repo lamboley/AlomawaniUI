@@ -4,9 +4,9 @@ local LibDualSpec = LibStub('LibDualSpec-1.0', true)
 local db
 local defaults = {
 	profile = {
-		modules = {
-			['*'] = true,
-		},
+		-- modules = {
+		-- 	['*'] = true,
+		-- },
 	}
 }
 
@@ -16,7 +16,6 @@ end
 
 function AlomawaniUI:OnInitialize()
 	self.db = LibStub('AceDB-3.0'):New('AlomawaniUIDB', defaults, true)
-
 	db = self.db.profile
 
 	self.db.RegisterCallback(self, 'OnProfileChanged', 'Refresh')
@@ -24,7 +23,7 @@ function AlomawaniUI:OnInitialize()
 	self.db.RegisterCallback(self, 'OnProfileReset', 'Refresh')
 
 	if LibDualSpec then
-		LibDualSpec:EnhanceDatabase(AlomawaniUI.db, "AlomawaniUI")
+		LibDualSpec:EnhanceDatabase(AlomawaniUI.db, 'AlomawaniUI')
 	end
 
 	self:SetupOptions()
@@ -39,7 +38,13 @@ function AlomawaniUI:Refresh()
 	db = self.db.profile
 
 	for k,v in self:IterateModules() do
-		if type(v.Refresh) == 'function' then
+		if self:GetModuleEnabled(k) and not v:IsEnabled() then
+			self:EnableModule(k)
+		elseif not self:GetModuleEnabled(k) and v:IsEnabled() then
+			self:DisableModule(k)
+		end
+
+		if v:IsEnabled() and type(v.Refresh) == 'function' then
 			v:Refresh()
 		end
 	end

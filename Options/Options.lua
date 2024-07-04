@@ -6,11 +6,12 @@ local AceConfigDialog = LibStub('AceConfigDialog-3.0')
 local LibDualSpec = LibStub('LibDualSpec-1.0', true)
 
 local options, moduleOptions = nil, {}
-local function getOptions()
-	if not options then
-		options = {
+
+local function generateOptions()
+	AlomawaniUI.options = {
 			type = 'group',
 			name = 'AlomawaniUI',
+			plugins = {},
 			args = {
 				general = {
 					order = 1,
@@ -25,18 +26,35 @@ local function getOptions()
 					},
 				},
 			},
-		}
-		for k,v in pairs(moduleOptions) do
-			options.args[k] = (type(v) == 'function') and v() or v
+	}
+
+	for k,v in AlomawaniUI:IterateModules() do
+		if v.SetupOptions then
+			v:SetupOptions()
 		end
 	end
 
-	return options
+	AlomawaniUI.options.plugins.profiles = {
+		profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(AlomawaniUI.db)
+	}
+
+	if LibDualSpec then
+		LibDualSpec:EnhanceOptions(AlomawaniUI.options.plugins.profiles.profiles, AlomawaniUI.db)
+	end
 end
 
-function AlomawaniUI:ChatCommand(input)
+local function getOptions()
+	if not AlomawaniUI.options then
+		generateOptions()
+
+		generateOptions = nil
+	end
+	return AlomawaniUI.options
+end
+
+function AlomawaniUI:ToggleOptions(input)
 	if InCombatLockdown() then
-		print('Cannot access options during combat.')
+		AlomawaniUI.Print('Cannot access options during combat.')
 		return
 	end
 	if not input or input:trim() == '' then
@@ -45,19 +63,13 @@ function AlomawaniUI:ChatCommand(input)
 end
 
 function AlomawaniUI:SetupOptions()
-	self:RegisterModuleOptions(AceDBOptions:GetOptionsTable(self.db), 'Profiles')
-
-	if LibDualSpec then
-		LibDualSpec:EnhanceOptions(AceDBOptions:GetOptionsTable(self.db), AlomawaniUI.db)
-	end
-
-	AceConfigRegistry:RegisterOptionsTable('AlomawaniUI', getOptions)
-
-
+	LibStub("AceConfig-3.0"):RegisterOptionsTable("AlomawaniUI", getOptions)
 	AceConfigDialog:SetDefaultSize('AlomawaniUI', 660, 650)
-	self:RegisterChatCommand( 'alomawaniui', 'ChatCommand')
 end
 
-function AlomawaniUI:RegisterModuleOptions(optionTable, name)
-	moduleOptions[name] = optionTable
+function AlomawaniUI:RegisterModuleOptions(id, table)
+	if not self.options then
+		error("Options table has not been created yet, respond to the callback!", 2)
+	end
+	AlomawaniUI.options.args[id] = table
 end

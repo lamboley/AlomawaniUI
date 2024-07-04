@@ -4,6 +4,7 @@ local BattlePet = AlomawaniUI:NewModule('BattlePet', 'AceEvent-3.0')
 local db
 local defaults = {
 	profile = {
+        enabled = true,
 		battlepetname = 0,
 	}
 }
@@ -21,9 +22,9 @@ function BattlePet:OnInitialize()
     self.db = AlomawaniUI.db:RegisterNamespace('BattlePet', defaults)
 	db = self.db.profile
 
-	self:SetEnabledState(true)
+	self:SetEnabledState(db.enabled)
 
-	self:SetupOptions()
+	-- self:SetupOptions()
 end
 
 function BattlePet:OnEnable()
@@ -34,8 +35,25 @@ function BattlePet:OnEnable()
     self:RegisterEvent('ZONE_CHANGED', 'SummonBattlePet')
     self:RegisterEvent('ZONE_CHANGED_INDOORS', 'SummonBattlePet')
     self:RegisterEvent('ZONE_CHANGED_NEW_AREA', 'SummonBattlePet')
+
+    self:ToggleOptions()
+end
+
+function BattlePet:ToggleOptions()
+	if self.options then
+		self.options.args = self:IsEnabled() and self.battlepetoptions or self.disabledoptions
+	end
+end
+
+function BattlePet:OnDisable()
+    self:ToggleOptions()
 end
 
 function BattlePet:Refresh()
 	db = self.db.profile
+
+    -- self:SetupOptions()
+
+
+    if not self:IsEnabled() then return end
 end

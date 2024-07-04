@@ -27,6 +27,7 @@ Libraries\LibSharedMedia-3.0\lib.xml
 
 ## Core ##
 AlomawaniUI.lua
+Constants.lua
 GUI.lua
 Commands.lua
 Media.lua
