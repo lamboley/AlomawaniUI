@@ -20,7 +20,7 @@ function BattlePet:SetupOptions()
 			width = 'full',
 		}
 
-		self.battlepetoptions = {
+		self.modulesoptions = {
 			enabled = enabled,
 			styleheader = {
 				order = 2,
@@ -55,5 +55,5 @@ function BattlePet:SetupOptions()
 	}
 
 	AlomawaniUI:AddModuleOptions('battlepet', self.options)
-	self.options.args = self:IsEnabled() and self.battlepetoptions or self.disabledoptions
+	self.options.args = self:IsEnabled() and self.modulesoptions or self.disabledoptions
 end

@@ -2,12 +2,10 @@ local _, AlomawaniUI = ...
 local Miscellaneous = AlomawaniUI:NewModule('Miscellaneous', 'AceEvent-3.0')
 
 function Miscellaneous:OnInitialize()
-
+	ObjectiveTrackerFrame:SetScale(0.85)
 end
 
 function Miscellaneous:OnEnable()
-    ObjectiveTrackerFrame:SetScale(0.85)
-
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 

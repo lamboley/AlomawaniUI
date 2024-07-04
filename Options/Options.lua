@@ -2,7 +2,7 @@ local _, AlomawaniUI = ...
 local AceDBOptions = LibStub('AceDBOptions-3.0')
 local AceConfigDialog = LibStub('AceConfigDialog-3.0')
 local LibDualSpec = LibStub('LibDualSpec-1.0', true)
-local AceConfig = LibStub(4AceConfig-3.04)
+local AceConfig = LibStub('AceConfig-3.0')
 
 local function generateOptions()
 	AlomawaniUI.options = {

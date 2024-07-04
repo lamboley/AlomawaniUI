@@ -1,6 +1,11 @@
-local _, AlomawaniUI = ...
-AlomawaniUI = LibStub('AceAddon-3.0'):NewAddon('AlomawaniUI', 'AceConsole-3.0', 'AceEvent-3.0', 'AceHook-3.0')
-_G.AlomawaniUI = AlomawaniUI
+local _G = _G
+local type= type
+
+local AceAddon, AceAddonMinor = _G.LibStub('AceAddon-3.0')
+
+local addonName, AlomawaniUI = ...
+AlomawaniUI = AceAddon:NewAddon(AlomawaniUI, 'AlomawaniUI', 'AceConsole-3.0', 'AceEvent-3.0', 'AceHook-3.0')
+_G[addonName] = AlomawaniUI
 
 local LibDualSpec = LibStub('LibDualSpec-1.0', true)
 
@@ -30,6 +35,7 @@ function AlomawaniUI:OnInitialize()
 end
 
 function AlomawaniUI:OnEnable()
+	SetCVar('cameraDistanceMaxZoomFactor ', 2.6)
 end
 
 function AlomawaniUI:Refresh()
@@ -40,3 +46,29 @@ function AlomawaniUI:Refresh()
 		end
 	end
 end
+
+AlomawaniUI.modulePrototype = {}
+function AlomawaniUI.modulePrototype:ToggleModule(info, value)
+	if value ~= nil then
+		self.db.profile.enabled = value
+	else
+		value = self.db.profile.enabled
+	end
+	if value and not self:IsEnabled() then
+		self:Enable()
+	elseif not value and self:IsEnabled() then
+		self:Disable()
+	end
+end
+
+function AlomawaniUI.modulePrototype:ToggleOptions()
+	if self.options then
+		self.options.args = self:IsEnabled() and self.modulesoptions or self.disabledoptions
+	end
+end
+
+function AlomawaniUI.modulePrototype:OnDisable()
+    self:ToggleOptions()
+end
+
+AlomawaniUI:SetDefaultModulePrototype(AlomawaniUI.modulePrototype)

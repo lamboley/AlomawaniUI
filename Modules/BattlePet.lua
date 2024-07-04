@@ -26,8 +26,6 @@ function BattlePet:OnInitialize()
 end
 
 function BattlePet:OnEnable()
-	self:Refresh()
-
     self:RegisterEvent('PLAYER_ENTERING_WORLD', 'SummonBattlePet')
     self:RegisterEvent('COMPANION_UPDATE', 'SummonBattlePet')
     self:RegisterEvent('ZONE_CHANGED', 'SummonBattlePet')
@@ -35,30 +33,4 @@ function BattlePet:OnEnable()
     self:RegisterEvent('ZONE_CHANGED_NEW_AREA', 'SummonBattlePet')
 
     self:ToggleOptions()
-end
-
-function BattlePet:ToggleOptions()
-	if self.options then
-		self.options.args = self:IsEnabled() and self.battlepetoptions or self.disabledoptions
-	end
-end
-
-function BattlePet:OnDisable()
-    self:ToggleOptions()
-end
-
-function BattlePet:Refresh()
-end
-
-function BattlePet:ToggleModule(info, value)
-	if value ~= nil then
-		self.db.profile.enabled = value
-	else
-		value = self.db.profile.enabled
-	end
-	if value and not self:IsEnabled() then
-		self:Enable()
-	elseif not value and self:IsEnabled() then
-		self:Disable()
-	end
 end

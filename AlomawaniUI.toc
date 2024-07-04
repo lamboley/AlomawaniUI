@@ -34,7 +34,6 @@ Media.lua
 ## Modules ##
 Modules\Miscellaneous.lua
 Modules\BattlePet.lua
-Modules\SetupCVars.lua
 
 ## Options ##
 Options\Options.lua
