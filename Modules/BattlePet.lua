@@ -1,7 +1,6 @@
-local AlomawaniUI = LibStub('AceAddon-3.0'):GetAddon('AlomawaniUI')
+local _, AlomawaniUI = ...
 local BattlePet = AlomawaniUI:NewModule('BattlePet', 'AceEvent-3.0')
 
-local db
 local defaults = {
 	profile = {
         enabled = true,
@@ -11,20 +10,19 @@ local defaults = {
 
 function BattlePet:SummonBattlePet()
     local instanceType = select(2, IsInInstance())
-    if InCombatLockdown('player') or IsStealthed() or instanceType == 'pvp' or instanceType == 'arena' then return end
+    if InCombatLockdown('player') or IsStealthed() or instanceType == 'pvp' or instanceType == 'arena' then
+		return
+	end
 
-    if C_PetJournal.GetSummonedPetGUID() ~= db.battlepetname then
-        C_PetJournal.SummonPetByGUID(db.battlepetname)
+    if C_PetJournal.GetSummonedPetGUID() ~= self.db.profile.battlepetname then
+        C_PetJournal.SummonPetByGUID(self.db.profile.battlepetname)
     end
 end
 
 function BattlePet:OnInitialize()
     self.db = AlomawaniUI.db:RegisterNamespace('BattlePet', defaults)
-	db = self.db.profile
 
-	self:SetEnabledState(db.enabled)
-
-	-- self:SetupOptions()
+	self:SetEnabledState(self.db.profile.enabled)
 end
 
 function BattlePet:OnEnable()
@@ -50,10 +48,17 @@ function BattlePet:OnDisable()
 end
 
 function BattlePet:Refresh()
-	db = self.db.profile
+end
 
-    -- self:SetupOptions()
-
-
-    if not self:IsEnabled() then return end
+function BattlePet:ToggleModule(info, value)
+	if value ~= nil then
+		self.db.profile.enabled = value
+	else
+		value = self.db.profile.enabled
+	end
+	if value and not self:IsEnabled() then
+		self:Enable()
+	elseif not value and self:IsEnabled() then
+		self:Disable()
+	end
 end

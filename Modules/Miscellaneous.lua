@@ -1,4 +1,4 @@
-local AlomawaniUI = LibStub('AceAddon-3.0'):GetAddon('AlomawaniUI')
+local _, AlomawaniUI = ...
 local Miscellaneous = AlomawaniUI:NewModule('Miscellaneous', 'AceEvent-3.0')
 
 function Miscellaneous:OnInitialize()

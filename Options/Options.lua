@@ -1,11 +1,8 @@
-local AlomawaniUI = LibStub('AceAddon-3.0'):GetAddon('AlomawaniUI')
-local AceConsole = LibStub('AceConsole-3.0')
-local AceConfigRegistry = LibStub('AceConfigRegistry-3.0')
+local _, AlomawaniUI = ...
 local AceDBOptions = LibStub('AceDBOptions-3.0')
 local AceConfigDialog = LibStub('AceConfigDialog-3.0')
 local LibDualSpec = LibStub('LibDualSpec-1.0', true)
-
-local options, moduleOptions = nil, {}
+local AceConfig = LibStub(4AceConfig-3.04)
 
 local function generateOptions()
 	AlomawaniUI.options = {
@@ -35,7 +32,7 @@ local function generateOptions()
 	end
 
 	AlomawaniUI.options.plugins.profiles = {
-		profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(AlomawaniUI.db)
+		profiles = AceDBOptions:GetOptionsTable(AlomawaniUI.db)
 	}
 
 	if LibDualSpec then
@@ -46,30 +43,25 @@ end
 local function getOptions()
 	if not AlomawaniUI.options then
 		generateOptions()
-
 		generateOptions = nil
 	end
+
 	return AlomawaniUI.options
 end
 
 function AlomawaniUI:ToggleOptions(input)
 	if InCombatLockdown() then
-		AlomawaniUI.Print('Cannot access options during combat.')
 		return
 	end
-	if not input or input:trim() == '' then
-		AceConfigDialog:Open('AlomawaniUI')
-	end
+
+	AceConfigDialog:Open('AlomawaniUI')
 end
 
 function AlomawaniUI:SetupOptions()
-	LibStub("AceConfig-3.0"):RegisterOptionsTable("AlomawaniUI", getOptions)
+	AceConfig:RegisterOptionsTable('AlomawaniUI', getOptions)
 	AceConfigDialog:SetDefaultSize('AlomawaniUI', 660, 650)
 end
 
-function AlomawaniUI:RegisterModuleOptions(id, table)
-	if not self.options then
-		error("Options table has not been created yet, respond to the callback!", 2)
-	end
+function AlomawaniUI:AddModuleOptions(id, table)
 	AlomawaniUI.options.args[id] = table
 end

@@ -1,4 +1,4 @@
-local AlomawaniUI = LibStub('AceAddon-3.0'):GetAddon('AlomawaniUI')
+local _, AlomawaniUI = ...
 local BattlePet = AlomawaniUI:GetModule('BattlePet')
 
 function BattlePet:SetupOptions()
@@ -49,11 +49,11 @@ function BattlePet:SetupOptions()
 
 	self.options = {
 		order = 30,
-		type = "group",
+		type = 'group',
 		name = 'Battle Pet',
 		arg = 'Battle Pet',
 	}
 
-	AlomawaniUI:RegisterModuleOptions('battlepet', self.options)
+	AlomawaniUI:AddModuleOptions('battlepet', self.options)
 	self.options.args = self:IsEnabled() and self.battlepetoptions or self.disabledoptions
 end
