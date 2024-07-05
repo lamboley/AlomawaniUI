@@ -5,17 +5,21 @@ local defaults = {
 	profile = {
         enabled = true,
 		battlepetname = 0,
+        battleground = false,
+        arena = false,
+        stealth = false,
 	}
 }
 
 function BattlePet:SummonBattlePet()
     local instanceType = select(2, IsInInstance())
-    if InCombatLockdown('player') or IsStealthed() or instanceType == 'pvp' or instanceType == 'arena' then
+    if InCombatLockdown('player') or (self.config.stealth and IsStealthed()) or (self.config.battleground and instanceType == 'pvp') or (self.config.arena and instanceType == 'arena') then
 		return
 	end
 
-    if C_PetJournal.GetSummonedPetGUID() ~= self.db.profile.battlepetname then
-        C_PetJournal.SummonPetByGUID(self.db.profile.battlepetname)
+    local _, petGUID = C_PetJournal.FindPetIDByName(self.config.battlepetname)
+    if petGUID and C_PetJournal.GetSummonedPetGUID() ~= petGUID then
+        C_PetJournal.SummonPetByGUID(petGUID)
     end
 end
 
@@ -33,4 +37,11 @@ function BattlePet:OnEnable()
     self:RegisterEvent('ZONE_CHANGED_NEW_AREA', 'SummonBattlePet')
 
     self:ToggleOptions()
+	self:ApplyConfig(self.db.profile)
+end
+
+function BattlePet:ApplyConfig(config)
+	if config then
+		self.config = config
+	end
 end

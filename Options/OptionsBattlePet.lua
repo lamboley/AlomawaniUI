@@ -1,6 +1,17 @@
 local _, AlomawaniUI = ...
 local BattlePet = AlomawaniUI:GetModule('BattlePet')
 
+local myGetterFunc, mySetterFunc
+do
+	function myGetterFunc(info)
+		return BattlePet.db.profile[info[#info]]
+	end
+
+	function mySetterFunc(info, value)
+		BattlePet.db.profile[info[#info]] = value
+	end
+end
+
 function BattlePet:SetupOptions()
 	if not self.options then
 		local enabled = {
@@ -8,13 +19,13 @@ function BattlePet:SetupOptions()
 			order = 1,
 			name = 'Enabled',
 			desc = 'Enable the Battle Pet module',
-			get = function() return BattlePet.db.profile.enabled end,
+			get = myGetterFunc,
 			set = function(info, value)
-				BattlePet.db.profile.enabled = value
-				if value and not BattlePet:IsEnabled() then
-					BattlePet:Enable()
-				elseif not value and BattlePet:IsEnabled() then
-					BattlePet:Disable()
+				self.db.profile.enabled = value
+				if value and not self:IsEnabled() then
+					self:Enable()
+				elseif not value and self:IsEnabled() then
+					self:Disable()
 				end
 			end,
 			width = 'full',
@@ -22,23 +33,40 @@ function BattlePet:SetupOptions()
 
 		self.modulesoptions = {
 			enabled = enabled,
-			styleheader = {
-				order = 2,
-				type = 'header',
-				name = 'General',
-			},
-			guid = {
+			header1 = AlomawaniUI.Header(2, 'General'),
+			battlepetname = {
 				order = 3,
 				type = 'input',
-				name = 'Battle Pet GUID',
-				desc = 'Battle Pet GUID',
-				get = function(info)
-					return BattlePet.db.profile.battlepetname
-				end,
-				set = function(info, value)
-					BattlePet.db.profile.battlepetname = value
-				end,
+				name = 'Pet Name',
+				desc = 'Pet Name',
+				get = myGetterFunc,
+				set = mySetterFunc,
 				dialogControl = 'EditBox',
+			},
+			header2 = AlomawaniUI.Header(4, 'When not to summon'),
+			battleground = {
+				order = 5,
+				type = 'toggle',
+				name = 'Battleground',
+				desc = 'Do not summon your battle pet during a battleground.',
+				set = mySetterFunc,
+				get = myGetterFunc,
+			},
+			arena = {
+				order = 6,
+				type = 'toggle',
+				name = 'Arena',
+				desc = 'Do not summon your battle pet during an arena match.',
+				set = mySetterFunc,
+				get = myGetterFunc,
+			},
+			stealth = {
+				order = 7,
+				type = 'toggle',
+				name = 'Stealth',
+				desc = 'Do not summon your battle pet while in stealth.',
+				set = mySetterFunc,
+				get = myGetterFunc,
 			},
 		}
 
@@ -48,7 +76,7 @@ function BattlePet:SetupOptions()
 	end
 
 	self.options = {
-		order = 30,
+		order = 2,
 		type = 'group',
 		name = 'Battle Pet',
 		arg = 'Battle Pet',

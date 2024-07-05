@@ -18,3 +18,11 @@ function AlomawaniUI.Spacer(order, fontSize)
         fontSize = fontSize,
     }
 end
+
+function AlomawaniUI.Header(order, name)
+    return {
+        order = order,
+        type = 'header',
+        name = name,
+    }
+end
