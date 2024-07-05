@@ -47,8 +47,8 @@ function AlomawaniUI:Refresh()
 	end
 end
 
-AlomawaniUI.modulePrototype = {}
-function AlomawaniUI.modulePrototype:ToggleModule(info, value)
+AlomawaniUI.defaultModulePrototype = {}
+function AlomawaniUI.defaultModulePrototype:ToggleModule(info, value)
 	if value ~= nil then
 		self.db.profile.enabled = value
 	else
@@ -61,14 +61,14 @@ function AlomawaniUI.modulePrototype:ToggleModule(info, value)
 	end
 end
 
-function AlomawaniUI.modulePrototype:ToggleOptions()
+function AlomawaniUI.defaultModulePrototype:ToggleOptions()
 	if self.options then
 		self.options.args = self:IsEnabled() and self.modulesoptions or self.disabledoptions
 	end
 end
 
-function AlomawaniUI.modulePrototype:OnDisable()
+function AlomawaniUI.defaultModulePrototype:OnDisable()
     self:ToggleOptions()
 end
 
-AlomawaniUI:SetDefaultModulePrototype(AlomawaniUI.modulePrototype)
+AlomawaniUI:SetDefaultModulePrototype(AlomawaniUI.defaultModulePrototype)

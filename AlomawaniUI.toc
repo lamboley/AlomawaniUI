@@ -34,7 +34,9 @@ Media.lua
 ## Modules ##
 Modules\Miscellaneous.lua
 Modules\BattlePet.lua
+Modules\MoutSummonEnhanced.lua
 
 ## Options ##
 Options\Options.lua
 Options\OptionsBattlePet.lua
+Options\OptionsMoutSummonEnhanced.lua

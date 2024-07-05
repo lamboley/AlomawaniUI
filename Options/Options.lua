@@ -51,6 +51,7 @@ end
 
 function AlomawaniUI:ToggleOptions(input)
 	if InCombatLockdown() then
+		AlomawaniUI.Print("Can't open options in combats.")
 		return
 	end
 
@@ -59,9 +60,5 @@ end
 
 function AlomawaniUI:SetupOptions()
 	AceConfig:RegisterOptionsTable('AlomawaniUI', getOptions)
-	AceConfigDialog:SetDefaultSize('AlomawaniUI', 660, 650)
-end
-
-function AlomawaniUI:AddModuleOptions(id, table)
-	AlomawaniUI.options.args[id] = table
+	AceConfigDialog:SetDefaultSize('AlomawaniUI', 590, 650)
 end

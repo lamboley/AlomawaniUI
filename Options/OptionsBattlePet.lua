@@ -20,14 +20,8 @@ function BattlePet:SetupOptions()
 			name = 'Enabled',
 			desc = 'Enable the Battle Pet module',
 			get = myGetterFunc,
-			set = function(info, value)
-				self.db.profile.enabled = value
-				if value and not self:IsEnabled() then
-					self:Enable()
-				elseif not value and self:IsEnabled() then
-					self:Disable()
-				end
-			end,
+			set = "ToggleModule",
+			handler = self,
 			width = 'full',
 		}
 
@@ -82,6 +76,6 @@ function BattlePet:SetupOptions()
 		arg = 'Battle Pet',
 	}
 
-	AlomawaniUI:AddModuleOptions('battlepet', self.options)
+	AlomawaniUI.options.args.battlepet = self.options
 	self.options.args = self:IsEnabled() and self.modulesoptions or self.disabledoptions
 end
