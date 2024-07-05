@@ -1,7 +1,17 @@
 local _, AlomawaniUI = ...
 local Miscellaneous = AlomawaniUI:NewModule('Miscellaneous', 'AceEvent-3.0')
 
+local defaults = {
+	profile = {
+        enabled = true,
+	}
+}
+
 function Miscellaneous:OnInitialize()
+	self.db = AlomawaniUI.db:RegisterNamespace('Miscellaneous', defaults)
+
+	self:SetEnabledState(self.db.profile.enabled)
+
 	ObjectiveTrackerFrame:SetScale(0.85)
 end
 
@@ -21,5 +31,15 @@ function Miscellaneous:PLAYER_ENTERING_WORLD()
 	else
 		ObjectiveTrackerFrame:Show()
 		ObjectiveTracker_Expand()
+	end
+end
+
+function Miscellaneous:OnEnable()
+	self:ApplyConfig(self.db.profile)
+end
+
+function Miscellaneous:ApplyConfig(config)
+	if config then
+		self.config = config
 	end
 end
