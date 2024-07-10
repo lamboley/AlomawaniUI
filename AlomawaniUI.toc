@@ -32,11 +32,17 @@ Commands.lua
 Media.lua
 
 ## Modules ##
-Modules\Miscellaneous.lua
+Modules\Miscellaneous\ChangeQuestFrame.lua
+Modules\Miscellaneous\ChangeTooltip.lua
+Modules\Miscellaneous\ChangePortrait.lua
 Modules\BattlePet.lua
 Modules\MoutSummonEnhanced.lua
+Modules\ProfileChooser.lua
 
 ## Options ##
 Options\Options.lua
+Options\OptionsChangeTooltip.lua
+Options\OptionsChangeQuestFrame.lua
+Options\OptionsChangePortrait.lua
 Options\OptionsBattlePet.lua
 Options\OptionsMoutSummonEnhanced.lua

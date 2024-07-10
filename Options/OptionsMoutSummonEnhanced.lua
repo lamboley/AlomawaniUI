@@ -156,7 +156,7 @@ function MoutSummonEnhanced:SetupOptions()
 	end
 
 	self.options = {
-		order = 3,
+		order = 4,
 		type = 'group',
 		name = 'Summon Mount',
 		arg = 'Summon Mount',

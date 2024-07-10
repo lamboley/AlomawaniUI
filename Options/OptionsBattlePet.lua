@@ -70,7 +70,7 @@ function BattlePet:SetupOptions()
 	end
 
 	self.options = {
-		order = 2,
+		order = 3,
 		type = 'group',
 		name = 'Battle Pet',
 		arg = 'Battle Pet',

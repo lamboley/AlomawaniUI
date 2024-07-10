@@ -1,5 +1,5 @@
 local _, AlomawaniUI = ...
-local Miscellaneous = AlomawaniUI:NewModule('Miscellaneous', 'AceEvent-3.0')
+local ChangeQuestFrame = AlomawaniUI:NewModule('ChangeQuestFrame', 'AceEvent-3.0')
 
 local defaults = {
 	profile = {
@@ -7,19 +7,17 @@ local defaults = {
 	}
 }
 
-function Miscellaneous:OnInitialize()
-	self.db = AlomawaniUI.db:RegisterNamespace('Miscellaneous', defaults)
+function ChangeQuestFrame:OnInitialize()
+	self.db = AlomawaniUI.db:RegisterNamespace('ChangeQuestFrame', defaults)
 
 	self:SetEnabledState(self.db.profile.enabled)
 
 	ObjectiveTrackerFrame:SetScale(0.85)
-end
 
-function Miscellaneous:OnEnable()
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
-function Miscellaneous:PLAYER_ENTERING_WORLD()
+function ChangeQuestFrame:PLAYER_ENTERING_WORLD()
 	local instanceType = select(2, IsInInstance())
 	if not instanceType then return end
 
@@ -34,11 +32,12 @@ function Miscellaneous:PLAYER_ENTERING_WORLD()
 	end
 end
 
-function Miscellaneous:OnEnable()
+function ChangeQuestFrame:OnEnable()
+    self:ToggleOptions()
 	self:ApplyConfig(self.db.profile)
 end
 
-function Miscellaneous:ApplyConfig(config)
+function ChangeQuestFrame:ApplyConfig(config)
 	if config then
 		self.config = config
 	end

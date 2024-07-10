@@ -22,6 +22,13 @@ local function generateOptions()
 						},
 					},
 				},
+				miscellaneous = {
+					order = 2,
+					type = 'group',
+					name = 'Miscellaneous',
+					args = {
+					},
+				},
 			},
 	}
 
