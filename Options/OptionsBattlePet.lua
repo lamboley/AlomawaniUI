@@ -20,7 +20,7 @@ function BattlePet:SetupOptions()
 			name = 'Enabled',
 			desc = 'Enable the Battle Pet module',
 			get = myGetterFunc,
-			set = "ToggleModule",
+			set = 'ToggleModule',
 			handler = self,
 			width = 'full',
 		}

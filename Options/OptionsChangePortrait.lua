@@ -1,26 +1,15 @@
 local _, AlomawaniUI = ...
 local ChangePortrait = AlomawaniUI:GetModule('ChangePortrait')
 
-local myGetterFunc, mySetterFunc
-do
-	function myGetterFunc(info)
-		return ChangePortrait.db.profile[info[#info]]
-	end
-
-	function mySetterFunc(info, value)
-		ChangePortrait.db.profile[info[#info]] = value
-	end
-end
-
 function ChangePortrait:SetupOptions()
 	if not self.options then
 		local enabled = {
 			type = 'toggle',
 			order = 1,
-			name = 'Enabled',
-			desc = 'Enable modification to the player portrait.',
-			get = myGetterFunc,
-			set = "ToggleModule",
+			name = 'Change the visibility of the Player Portrait',
+			desc = 'Change the visibility of the Player Portrait.',
+			get = function() return self.db.profile.enabled end,
+			set = 'ToggleModule',
 			handler = self,
 			width = 'full',
 		}
@@ -32,16 +21,18 @@ function ChangePortrait:SetupOptions()
 		self.disabledoptions = {
 			enabled = enabled,
 		}
+
+		AlomawaniUI.options.args.miscellaneous.args.options.args.changeportraitenabled = enabled
 	end
 
-	self.options = {
-		order = 3,
-		type = 'group',
-		name = 'Player Portrait',
-		desc = 'Make modification to the player portrait.',
-        childGroups = 'tab',
-	}
+	-- self.options = {
+	-- 	order = 3,
+	-- 	type = 'group',
+	-- 	name = 'Player Portrait',
+	-- 	desc = 'Make modification to the player portrait.',
+    --     childGroups = 'tab',
+	-- }
 
-	AlomawaniUI.options.args.miscellaneous.args.changeportrait = self.options
-	self.options.args = self:IsEnabled() and self.modulesoptions or self.disabledoptions
+	-- AlomawaniUI.options.args.miscellaneous.args.changeportrait = self.options
+	-- self.options.args = self:IsEnabled() and self.modulesoptions or self.disabledoptions
 end

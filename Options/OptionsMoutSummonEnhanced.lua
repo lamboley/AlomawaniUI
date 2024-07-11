@@ -23,7 +23,7 @@ function MoutSummonEnhanced:SetupOptions()
 			name = 'Enabled',
 			desc = 'Enable the Enhanced Mount module',
 			get = myGetterFunc,
-			set = "ToggleModule",
+			set = 'ToggleModule',
 			handler = self,
 			width = 'full',
 		}

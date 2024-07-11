@@ -18,15 +18,25 @@ function ChangeQuestFrame:SetupOptions()
 			type = 'toggle',
 			order = 1,
 			name = 'Enabled',
-			desc = 'Enable modification to Quest Frame.',
-			get = myGetterFunc,
-			set = "ToggleModule",
+			desc = 'Modify the ObjectiveTrackerFrame',
+			get = function() return self.db.profile.enabled end,
+			set = 'ToggleModule',
 			handler = self,
 			width = 'full',
 		}
 
 		self.modulesoptions = {
 			enabled = enabled,
+			header1 = AlomawaniUI.Header(2, 'Layout'),
+			scale = {
+				order = 3,
+				name = 'Scale',
+				desc = 'Configure the scale of the ObjectiveTrackerFrame. (Need /reload)',
+				type = "range",
+				min = 0.01, softMin = .1, softMax = 2, bigStep = 0.05,
+				get = myGetterFunc,
+				set = mySetterFunc,
+			},
 		}
 
 		self.disabledoptions = {

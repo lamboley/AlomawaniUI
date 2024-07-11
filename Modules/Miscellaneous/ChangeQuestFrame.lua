@@ -4,6 +4,7 @@ local ChangeQuestFrame = AlomawaniUI:NewModule('ChangeQuestFrame', 'AceEvent-3.0
 local defaults = {
 	profile = {
         enabled = true,
+		scale = 1,
 	}
 }
 
@@ -12,7 +13,7 @@ function ChangeQuestFrame:OnInitialize()
 
 	self:SetEnabledState(self.db.profile.enabled)
 
-	ObjectiveTrackerFrame:SetScale(0.85)
+	ObjectiveTrackerFrame:SetScale(self.db.profile.scale)
 
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end

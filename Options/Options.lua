@@ -27,6 +27,21 @@ local function generateOptions()
 					type = 'group',
 					name = 'Miscellaneous',
 					args = {
+						options = {
+							type = "group",
+							order = 0,
+							name = function(info) if info.uiType == "dialog" then return "" else return "Bar Options" end end,
+							guiInline = true,
+							args = {
+								-- enabled = {
+								-- 	type = 'toggle',
+								-- 	order = 1,
+								-- 	name = 'Enabled',
+								-- 	desc = 'Enable modification to Quest Frame.',
+								-- 	width = 'full',
+								-- }
+							}
+						},
 					},
 				},
 			},
