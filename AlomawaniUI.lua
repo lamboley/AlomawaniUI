@@ -55,8 +55,10 @@ function AlomawaniUI.defaultModulePrototype:ToggleModule(info, value)
 		value = self.db.profile.enabled
 	end
 	if value and not self:IsEnabled() then
+		print('self:Enable()')
 		self:Enable()
 	elseif not value and self:IsEnabled() then
+		print('self:Disable()')
 		self:Disable()
 	end
 end

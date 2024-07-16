@@ -38,6 +38,9 @@ Modules\Miscellaneous\ChangePortrait.lua
 Modules\BattlePet.lua
 Modules\MoutSummonEnhanced.lua
 Modules\ProfileChooser.lua
+Modules\Voicing.lua
+
+
 
 ## Options ##
 Options\Options.lua
@@ -46,3 +49,4 @@ Options\OptionsChangeQuestFrame.lua
 Options\OptionsChangePortrait.lua
 Options\OptionsBattlePet.lua
 Options\OptionsMoutSummonEnhanced.lua
+Options\OptionsVoicing.lua

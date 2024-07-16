@@ -8,7 +8,9 @@ function ChangeTooltip:SetupOptions()
 			order = 1,
 			name = 'Hide tooltip during Combat',
 			desc = 'Hide tooltip during Combat',
-			get = function() return self.db.profile.enabled end,
+			get = function()
+				return self.db.profile.enabled
+			end,
 			set = 'ToggleModule',
 			handler = self,
 			width = 'full',

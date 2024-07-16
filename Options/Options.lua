@@ -9,40 +9,62 @@ local function generateOptions()
 			type = 'group',
 			name = 'AlomawaniUI',
 			plugins = {},
+			childGroups = 'tree',
 			args = {
-				general = {
-					order = 1,
-					type = 'group',
-					name = 'General Settings',
-					args = {
-						intro = {
-							order = 1,
-							type = 'description',
-							name ='AlomawaniUI is the personnal addon of Alomawani.',
-						},
-					},
-				},
 				miscellaneous = {
-					order = 2,
+					order = 1,
 					type = 'group',
 					name = 'Miscellaneous',
 					args = {
 						options = {
-							type = "group",
+							type = 'group',
 							order = 0,
-							name = function(info) if info.uiType == "dialog" then return "" else return "Bar Options" end end,
+							name = function(info) if info.uiType == 'dialog' then return '' else return 'Bar Options' end end,
 							guiInline = true,
 							args = {
-								-- enabled = {
-								-- 	type = 'toggle',
-								-- 	order = 1,
-								-- 	name = 'Enabled',
-								-- 	desc = 'Enable modification to Quest Frame.',
-								-- 	width = 'full',
-								-- }
 							}
 						},
 					},
+				},
+				voicing = {
+					order = 5,
+					type = "group",
+					name = 'Voicing',
+					childGroups = "tab",
+					args = {
+						ilgynoth = {
+							order = 2,
+							type = 'group',
+							name = 'Ilgynoth',
+							arg = 'Ilgynoth',
+							args = {
+							},
+						},
+						yshaarj = {
+							order = 3,
+							type = 'group',
+							name = 'Yshaarj',
+							arg = 'Yshaarj',
+							args = {
+							},
+						},
+						xalatath = {
+							order = 4,
+							type = 'group',
+							name = 'Xalatath',
+							arg = 'Xalatath',
+							args = {
+							},
+						},
+						yoggsaron = {
+							order = 5,
+							type = 'group',
+							name = 'Yogg Saron',
+							arg = 'Yogg Saron',
+							args = {
+							},
+						},
+					}
 				},
 			},
 	}
@@ -82,5 +104,5 @@ end
 
 function AlomawaniUI:SetupOptions()
 	AceConfig:RegisterOptionsTable('AlomawaniUI', getOptions)
-	AceConfigDialog:SetDefaultSize('AlomawaniUI', 590, 650)
+	AceConfigDialog:SetDefaultSize('AlomawaniUI', 800, 650)
 end

@@ -16,11 +16,13 @@ function ChangeTooltip:OnInitialize()
 end
 
 function ChangeTooltip:PLAYER_ENTERING_WORLD()
-    hooksecurefunc(GameTooltip, 'Show', function(self)
-        if UnitAffectingCombat('player') then
-            self:Hide()
-        end
-    end)
+	if self.db.profile.enabled then
+		hooksecurefunc(GameTooltip, 'Show', function(self)
+			if UnitAffectingCombat('player') then
+				self:Hide()
+			end
+		end)
+	end
 end
 
 function ChangeTooltip:OnEnable()

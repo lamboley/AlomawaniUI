@@ -6,7 +6,6 @@ local defaults = {
         enabled = true,
 		groundmount = 482,
         flyingmount = 477,
-        dragonridingmount = '',
         donotfly = {
 
         },
@@ -34,13 +33,14 @@ function AlomawaniUI:Mount()
             else
                 C_MountJournal.SummonByID(tonumber(MoutSummonEnhanced.db.profile.flyingmount))
             end
+        else
+            C_MountJournal.SummonByID(678) -- Chauffered Mechano-Hog
         end
     end
 end
 
 function MoutSummonEnhanced:UpdateMountSpell()
     self.masterRiding = IsSpellKnown(90265)
-    self.dragonRiding = IsSpellKnown(376777)
 end
 
 function MoutSummonEnhanced:OnInitialize()
