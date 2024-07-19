@@ -16,7 +16,8 @@ function Alerts:COMBAT_LOG_EVENT_UNFILTERED()
             if self.db.profile.foodmage and spellID == 190336 then
                 SendChatMessage('I just created a table (' .. GetSpellLink(spellID) .. ').')
             elseif self.db.profile.cookie and spellID == 29893 then
-                SendChatMessage('I just created cookie (' .. GetItemLink(5512) .. ').')
+                local itemName, itemLink = C_Item.GetItemInfo(5512)
+                SendChatMessage('I just created a ' .. GetSpellLink(spellID) .. ' for you to get some ' .. select(2, C_Item.GetItemInfo(5512)) .. '.')
             end
         end
     end

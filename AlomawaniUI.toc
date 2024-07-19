@@ -41,7 +41,7 @@ Modules\MoutSummonEnhanced.lua
 Modules\ProfileChooser.lua
 Modules\Voicing.lua
 Modules\Alerts.lua
-
+Modules\AutoDepositGuildBank.lua
 
 ## Options ##
 Options\Options.lua
@@ -53,3 +53,4 @@ Options\OptionsBattlePet.lua
 Options\OptionsMoutSummonEnhanced.lua
 Options\OptionsVoicing.lua
 Options\OptionsAlerts.lua
+Options\OptionsAutoDepositGuildBank.lua
