@@ -21,9 +21,10 @@ end
 function AlomawaniUI:OnInitialize()
 	self.db = LibStub('AceDB-3.0'):New('AlomawaniUIDB', defaults, true)
 
-	self.db.RegisterCallback(self, 'OnProfileChanged', 'Refresh')
-	self.db.RegisterCallback(self, 'OnProfileCopied', 'Refresh')
-	self.db.RegisterCallback(self, 'OnProfileReset', 'Refresh')
+	self.db.RegisterCallback(self, 'OnNewProfile', 'InitializeProfile')
+	self.db.RegisterCallback(self, 'OnProfileChanged', 'UpdateModuleConfigs')
+	self.db.RegisterCallback(self, 'OnProfileCopied', 'UpdateModuleConfigs')
+	self.db.RegisterCallback(self, 'OnProfileReset', 'UpdateModuleConfigs')
 
 	if LibDualSpec then
 		LibDualSpec:EnhanceDatabase(AlomawaniUI.db, 'AlomawaniUI')
@@ -34,15 +35,19 @@ function AlomawaniUI:OnInitialize()
 	self:LoadMedia()
 end
 
+function AlomawaniUI:InitializeProfile()
+	self:UpdateModuleConfigs()
+end
+
 function AlomawaniUI:OnEnable()
 	SetCVar('cameraDistanceMaxZoomFactor ', 2.6)
 end
 
-function AlomawaniUI:Refresh()
-	for k,v in self:IterateModules() do
+function AlomawaniUI:UpdateModuleConfigs()
+	for _, v in self:IterateModules() do
 		v:ToggleModule()
-		if v:IsEnabled() and type(v.Refresh) == 'function' then
-			v:Refresh()
+		if v:IsEnabled() and type(v.ApplyConfig) == 'function' then
+			v:ApplyConfig()
 		end
 	end
 end
@@ -55,10 +60,8 @@ function AlomawaniUI.defaultModulePrototype:ToggleModule(info, value)
 		value = self.db.profile.enabled
 	end
 	if value and not self:IsEnabled() then
-		print('self:Enable()')
 		self:Enable()
 	elseif not value and self:IsEnabled() then
-		print('self:Disable()')
 		self:Disable()
 	end
 end

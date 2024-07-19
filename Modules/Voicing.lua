@@ -4,6 +4,7 @@ local Voicing = AlomawaniUI:NewModule('Voicing', 'AceEvent-3.0')
 local defaults = {
 	profile = {
         enabled = true,
+        timer = 10,
         debug = false,
 		deathsound = true,
 		combatstart = true,
@@ -37,8 +38,8 @@ function Voicing:PLAYER_DEAD()
 	local possibleSounds = {}
 
     if self.currentSoundHandle then
-        StopSound(currentSoundHandle)
-        currentSoundHandle = nil
+        StopSound(self.currentSoundHandle)
+        self.currentSoundHandle = nil
     end
 
 	for key, value in pairs(self.db.profile.ilgynothdeathsounds) do
@@ -66,21 +67,27 @@ function Voicing:PLAYER_DEAD()
 	end
 
 	local soundFile = possibleSounds[math.random(1, #possibleSounds)]
+	local currentTime = time()
 
-    local willPlay, soundHandle = PlaySoundFile(soundFile , 'Master', true, false)
-    if willPlay then
-		if self.db.profile.debug then
-			AlomawaniUI.Print('Playing Sounds : ' .. soundFile)
+	if (currentTime - self.lastSoundTime) > self.db.profile.timer  then
+		local willPlay, soundHandle = PlaySoundFile(soundFile , 'Master', true, false)
+		if willPlay then
+			if self.db.profile.debug then
+				AlomawaniUI.Print('Playing Sounds : ' .. soundFile)
+			end
+
+			self.lastSoundTime = currentTime
+			self.currentSoundHandle = soundHandle
 		end
-
-        self.currentSoundHandle = soundHandle
-    end
+	end
 end
 
 function Voicing:OnInitialize()
     self.db = AlomawaniUI.db:RegisterNamespace('Voicing', defaults)
 
 	self:SetEnabledState(self.db.profile.enabled)
+
+	self.lastSoundTime = 0
 end
 
 function Voicing:OnEnable()

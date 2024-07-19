@@ -19,9 +19,7 @@ function Voicing:SetupOptions()
 			order = 1,
 			name = 'Enabled',
 			desc = 'Enable the Voicing module',
-			get = function()
-				return self.db.profile.enabled
-			end,
+			get = myGetterFunc,
 			set = 'ToggleModule',
 			handler = self,
 			width = 'full',
@@ -33,52 +31,52 @@ function Voicing:SetupOptions()
 				order = 2,
 				type = 'toggle',
 				name = 'Print message when sound play',
-				-- desc = 'Make sound when player die.',
 				set = mySetterFunc,
-				get = function()
-					return self.db.profile.debug
-				end,
+				get = myGetterFunc,
 			},
-			header2 = AlomawaniUI.Header(3, 'Event'),
+			timer = {
+				order = 3,
+				name = 'Timer',
+				desc = 'Minimum seconds between sounds.',
+				type = 'range',
+				min = 5, max = 300, bigStep = 1,
+				get = myGetterFunc,
+				set = mySetterFunc,
+				-- width = 'full',
+			},
+
+			header2 = AlomawaniUI.Header(4, 'Event'),
 			deathsound = {
-				order = 4,
+				order = 5,
 				type = 'toggle',
 				name = 'When player die',
 				desc = 'Make sound when player die.',
 				set = mySetterFunc,
-				get = function()
-					return self.db.profile.deathsound
-				end,
+				get = myGetterFunc,
 			},
 			combatstart = {
-				order = 5,
+				order = 6,
 				type = 'toggle',
 				name = 'When combat start',
 				desc = 'Make sound when combat start.',
 				set = mySetterFunc,
-				get = function()
-					return self.db.profile.combatstart
-				end,
+				get = myGetterFunc,
 			},
 			combatstop = {
-				order = 6,
+				order = 7,
 				type = 'toggle',
 				name = 'When combat stop',
 				desc = 'Make sound when combat stop.',
 				set = mySetterFunc,
-				get = function()
-					return self.db.profile.combatstop
-				end,
+				get = myGetterFunc,
 			},
 			duringcombat = {
-				order = 7,
+				order = 8,
 				type = 'toggle',
 				name = 'During combat',
 				desc = 'Make sound during combat.',
 				set = mySetterFunc,
-				get = function()
-					return self.db.profile.duringcombat
-				end,
+				get = myGetterFunc,
 			},
 		}
 

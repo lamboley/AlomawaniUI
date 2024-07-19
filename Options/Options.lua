@@ -104,5 +104,5 @@ end
 
 function AlomawaniUI:SetupOptions()
 	AceConfig:RegisterOptionsTable('AlomawaniUI', getOptions)
-	AceConfigDialog:SetDefaultSize('AlomawaniUI', 800, 650)
+	AceConfigDialog:SetDefaultSize('AlomawaniUI', 940, 650)
 end
