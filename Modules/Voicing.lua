@@ -35,49 +35,49 @@ local defaults = {
 }
 
 function Voicing:PLAYER_DEAD()
-	local possibleSounds = {}
+    -- if self.currentSoundHandle then
+    --     StopSound(self.currentSoundHandle)
+    --     self.currentSoundHandle = nil
+    -- end
 
-    if self.currentSoundHandle then
-        StopSound(self.currentSoundHandle)
-        self.currentSoundHandle = nil
-    end
-
-	for key, value in pairs(self.db.profile.ilgynothdeathsounds) do
-		if value then
-			table.insert(possibleSounds, key)
-		end
-	end
-
-	for key, value in pairs(self.db.profile.yshaarjdeathsounds) do
-		if value then
-			table.insert(possibleSounds, key)
-		end
-	end
-
-	for key, value in pairs(self.db.profile.xalatathdeathsounds) do
-		if value then
-			table.insert(possibleSounds, key)
-		end
-	end
-
-	for key, value in pairs(self.db.profile.yoggsarondeathsounds) do
-		if value then
-			table.insert(possibleSounds, key)
-		end
-	end
-
-	local soundFile = possibleSounds[math.random(1, #possibleSounds)]
 	local currentTime = time()
-
 	if (currentTime - self.lastSoundTime) > self.db.profile.timer  then
-		local willPlay, soundHandle = PlaySoundFile(soundFile , 'Master', true, false)
+
+		local possibleSounds = {}
+		for key, value in pairs(self.db.profile.ilgynothdeathsounds) do
+			if value then
+				table.insert(possibleSounds, key)
+			end
+		end
+
+		for key, value in pairs(self.db.profile.yshaarjdeathsounds) do
+			if value then
+				table.insert(possibleSounds, key)
+			end
+		end
+
+		for key, value in pairs(self.db.profile.xalatathdeathsounds) do
+			if value then
+				table.insert(possibleSounds, key)
+			end
+		end
+
+		for key, value in pairs(self.db.profile.yoggsarondeathsounds) do
+			if value then
+				table.insert(possibleSounds, key)
+			end
+		end
+
+		local soundFile = possibleSounds[math.random(1, #possibleSounds)]
+
+		local willPlay = PlaySoundFile(soundFile , 'Master', true, false)
 		if willPlay then
 			if self.db.profile.debug then
 				AlomawaniUI.Print('Playing Sounds : ' .. soundFile)
 			end
 
 			self.lastSoundTime = currentTime
-			self.currentSoundHandle = soundHandle
+			-- self.currentSoundHandle = soundHandle
 		end
 	end
 end

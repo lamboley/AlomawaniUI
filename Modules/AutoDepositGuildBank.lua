@@ -39,7 +39,6 @@ function AutoDepositGuildBank:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(event, type)
                         StaticPopup1MoneyInputFrameSilver:SetText(ssub(money, length-3, length-2))
                         StaticPopup1MoneyInputFrameCopper:SetText(ssub(money, length-1, length-0))
                         StaticPopup1Button1:Click()
-                        AlomawaniUI.Print('Sending gold to bank')
                     end)
                 end
             elseif (money < amountToKeep) then
@@ -55,7 +54,6 @@ function AutoDepositGuildBank:PLAYER_INTERACTION_MANAGER_FRAME_SHOW(event, type)
                         StaticPopup1MoneyInputFrameSilver:SetText(ssub(money, length-3, length-2))
                         StaticPopup1MoneyInputFrameCopper:SetText(ssub(money, length-1, length-0))
                         StaticPopup1Button1:Click()
-                        AlomawaniUI.Print('Sending gold to bag')
                     end)
                 end
             end

@@ -5,7 +5,7 @@ function ChangeTooltip:SetupOptions()
 	if not self.options then
 		local enabled = {
 			type = 'toggle',
-			order = 1,
+			order = 2,
 			name = 'Hide tooltip during Combat',
 			desc = 'Hide tooltip during Combat',
 			get = function()
