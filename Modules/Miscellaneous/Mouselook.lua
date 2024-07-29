@@ -7,6 +7,8 @@ local defaults = {
 	}
 }
 
+local lastRightClick = 0
+
 local function DisableRightClick()
     local time = GetTime()
     if lastRightClick + 0.2 < time then

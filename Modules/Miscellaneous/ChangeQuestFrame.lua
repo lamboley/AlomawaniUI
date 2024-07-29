@@ -4,7 +4,7 @@ local ChangeQuestFrame = AlomawaniUI:NewModule('ChangeQuestFrame', 'AceEvent-3.0
 local defaults = {
 	profile = {
         enabled = true,
-		scale = 1,
+		scale = 0.85,
 	}
 }
 
@@ -26,16 +26,18 @@ function ChangeQuestFrame:PLAYER_ENTERING_WORLD()
 		ObjectiveTrackerFrame:Hide()
 	elseif instanceType == 'party' or instanceType == 'raid' or instanceType == 'scenario' then
 		ObjectiveTrackerFrame:Show()
-		ObjectiveTracker_Collapse()
+		-- ObjectiveTracker_Collapse()
 	else
 		ObjectiveTrackerFrame:Show()
-		ObjectiveTracker_Expand()
+		-- ObjectiveTracker_Expand()
 	end
 end
 
 function ChangeQuestFrame:OnEnable()
     self:ToggleOptions()
 	self:ApplyConfig(self.db.profile)
+
+	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 end
 
 function ChangeQuestFrame:ApplyConfig(config)

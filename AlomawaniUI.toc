@@ -35,6 +35,7 @@ Media.lua
 Modules\Miscellaneous\ChangeQuestFrame.lua
 Modules\Miscellaneous\Vendors.lua
 Modules\Miscellaneous\ChangeTooltip.lua
+Modules\Miscellaneous\ChangeChat.lua
 Modules\Miscellaneous\ChangePortrait.lua
 Modules\Miscellaneous\Mouselook.lua
 Modules\BattlePet.lua
@@ -47,6 +48,7 @@ Modules\AutoDepositGuildBank.lua
 ## Options ##
 Options\Options.lua
 Options\OptionsChangeTooltip.lua
+Options\OptionsChangeChat.lua
 Options\OptionsChangeQuestFrame.lua
 Options\OptionsVendors.lua
 Options\OptionsChangePortrait.lua

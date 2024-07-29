@@ -28,10 +28,22 @@ function AlomawaniUI:GetMountID(spellID)
     end
 end
 
+local function msToModernBlizzard(ms)
+    return string.format("%d min %02d sec", ms / 1000 / 60, (ms / 1000) % 60)
+end
+
+function AlomawaniUI:QueueTime()
+    if GetBattlefieldStatus(1) == 'queued' then
+        AlomawaniUI.Print('Average Wait Time: ' .. msToModernBlizzard(GetBattlefieldEstimatedWaitTime(1)))
+        AlomawaniUI.Print('Time In Queue: ' .. msToModernBlizzard(GetBattlefieldTimeWaited(1)))
+    end
+end
+
 function AlomawaniUI:LoadCommands()
     self:RegisterChatCommand('petguid', 'GetPetGUID')
     self:RegisterChatCommand('zoneid', 'ShowZoneID')
     self:RegisterChatCommand('alomawaniui', 'ToggleOptions')
     self:RegisterChatCommand('mountid', 'GetMountID')
+    self:RegisterChatCommand('queuetime', 'QueueTime')
 end
 
