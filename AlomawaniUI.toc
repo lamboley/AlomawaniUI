@@ -44,6 +44,7 @@ Modules\ProfileChooser.lua
 Modules\Voicing.lua
 Modules\Alerts.lua
 Modules\AutoDepositGuildBank.lua
+Modules\BuffFrameFilter.lua
 
 ## Options ##
 Options\Options.lua
@@ -58,3 +59,4 @@ Options\OptionsMoutSummonEnhanced.lua
 Options\OptionsVoicing.lua
 Options\OptionsAlerts.lua
 Options\OptionsAutoDepositGuildBank.lua
+Options\OptionsBuffFrameFilter.lua

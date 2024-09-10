@@ -8,10 +8,10 @@ local defaults = {
 }
 
 local function setProfileBartender(profile)
-	for i = 1, GetNumAddOns() do
-		local addonName = GetAddOnInfo(i)
+	for i = 1, C_AddOns.GetNumAddOns() do
+		local addonName = C_AddOns.GetAddOnInfo(i)
 
-		if IsAddOnLoaded(i) then
+		if C_AddOns.IsAddOnLoaded(i) then
 			if (addonName == 'Bartender4') then
 				local addon = _G[addonName]
 				if type(addon) == 'table' and type(addon.db) == 'table' then

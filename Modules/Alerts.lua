@@ -14,10 +14,10 @@ function Alerts:COMBAT_LOG_EVENT_UNFILTERED()
 	if subEvent == 'SPELL_CAST_SUCCESS' then
         if sourceName and sourceName == UnitName('Player') then
             if self.db.profile.foodmage and spellID == 190336 then
-                SendChatMessage('I just created a table (' .. GetSpellLink(spellID) .. ').')
+                SendChatMessage('I just created a table (' .. C_Spell.GetSpellLink(spellID) .. ').')
             elseif self.db.profile.cookie and spellID == 29893 then
                 local itemName, itemLink = C_Item.GetItemInfo(5512)
-                SendChatMessage('I just created a ' .. GetSpellLink(spellID) .. ' for you to get some ' .. select(2, C_Item.GetItemInfo(5512)) .. '.')
+                SendChatMessage('I just created a ' .. C_Spell.GetSpellLink(spellID) .. ' for you to get some ' .. select(2, C_Item.GetItemInfo(5512)) .. '.')
             end
         end
     end

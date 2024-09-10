@@ -42,6 +42,7 @@ end
 function AlomawaniUI:OnEnable()
 	SetCVar('cameraDistanceMaxZoomFactor ', 2.6)
 	SetCVar('cameraIndirectVisibility ', 1)
+	SetCVar('floatingCombatTextCombatDamage ', 1)
 end
 
 function AlomawaniUI:UpdateModuleConfigs()

@@ -19,6 +19,19 @@ function ChangeQuestFrame:OnInitialize()
 end
 
 function ChangeQuestFrame:PLAYER_ENTERING_WORLD()
+
+	-- CompactRaidFrameManager:UnregisterAllEvents()
+	-- CompactRaidFrameManager:HookScript("OnShow", function(s) s:Hide() end)
+	-- CompactRaidFrameManager:Hide()
+
+	MicroButtonAndBagsBar:UnregisterAllEvents()
+	MicroButtonAndBagsBar:HookScript("OnShow", function(s) s:Hide() end)
+	MicroButtonAndBagsBar:Hide()
+
+	BagsBar:UnregisterAllEvents()
+	BagsBar:HookScript("OnShow", function(s) s:Hide() end)
+	BagsBar:Hide()
+
 	local instanceType = select(2, IsInInstance())
 	if not instanceType then return end
 
@@ -31,6 +44,10 @@ function ChangeQuestFrame:PLAYER_ENTERING_WORLD()
 		ObjectiveTrackerFrame:Show()
 		-- ObjectiveTracker_Expand()
 	end
+
+
+
+
 end
 
 function ChangeQuestFrame:OnEnable()
