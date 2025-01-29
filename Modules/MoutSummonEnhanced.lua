@@ -19,7 +19,7 @@ function AlomawaniUI:Mount()
         VehicleExit()
     elseif IsMounted() then
         Dismount()
-    elseif not InCombatLockdown() then
+    else
         if MoutSummonEnhanced.masterRiding then
             local instanceType = select(2, IsInInstance())
             if forcegroundmountinpvp and instanceType and instanceType == 'arena' then -- In Arena
