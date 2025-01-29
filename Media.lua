@@ -5,6 +5,7 @@ local mediaPath = {
 	statusbar = [[Interface\AddOns\AlomawaniUI\Media\Statusbar\]],
 	sound = [[Interface\AddOns\AlomawaniUI\Media\Sounds\]],
 	background = [[Interface\AddOns\AlomawaniUI\Media\Background\]],
+	font = [[Interface\AddOns\AlomawaniUI\Media\Font\]],
 }
 
 local function AddMedia(type, name, file)
@@ -33,5 +34,6 @@ function AlomawaniUI:LoadMedia()
 	AddMedia('sound','|cFF00FF00AlomawaniUI incomingdebuff|r', 'incomingdebuff.ogg')
 	AddMedia('sound','|cFF00FF00AlomawaniUI helpsoak|r', 'helpsoak.ogg')
 	AddMedia('sound','|cFF00FF00AlomawaniUI healfull|r', 'healfull.ogg')
+	AddMedia('font','FiraSansCondensed', 'FiraSansCondensed-Medium.ttf')
 end
 
