@@ -34,6 +34,7 @@ function AlomawaniUI:LoadMedia()
 	AddMedia('sound','|cFF00FF00AlomawaniUI incomingdebuff|r', 'incomingdebuff.ogg')
 	AddMedia('sound','|cFF00FF00AlomawaniUI helpsoak|r', 'helpsoak.ogg')
 	AddMedia('sound','|cFF00FF00AlomawaniUI healfull|r', 'healfull.ogg')
+	AddMedia('sound','|cFF00FF00AlomawaniUI silence|r', 'silence.ogg')
 	AddMedia('font','FiraSansCondensed', 'FiraSansCondensed-Medium.ttf')
 end
 
