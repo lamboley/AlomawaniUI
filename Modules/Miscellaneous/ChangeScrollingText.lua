@@ -20,7 +20,6 @@ function ChangeScrollingText:PLAYER_ENTERING_WORLD()
 	if not instanceType then return end
 
 	if instanceType == 'party' or instanceType == 'raid' then
-        print('Disable')
         SetCVar('floatingCombatTextCombatHealing', 0)
         SetCVar('floatingCombatTextCombatDamage', 0)
         SetCVar('floatingCombatTextPetMeleeDamage', 0)
