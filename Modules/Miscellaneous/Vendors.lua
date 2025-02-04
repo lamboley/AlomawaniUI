@@ -23,6 +23,23 @@ function Vendors:MERCHANT_SHOW()
         end
         RepairAllItems()
     end
+
+    for bagID = 0, NUM_BAG_SLOTS do
+        local numSlots  = C_Container.GetContainerNumSlots(bagID)
+        if numSlots then
+            for slot = 1, numSlots do
+                local itemID = C_Container.GetContainerItemID(bagID, slot)
+                if itemID then
+                    local containerInfo = C_Container.GetContainerItemInfo(bagID, slot)
+                    if not containerInfo.isLocked and containerInfo.iconFileID then
+                        if (containerInfo.quality and containerInfo.quality == 0) then
+                            C_Container.UseContainerItem(bagID, slot)
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
 
 function Vendors:OnEnable()

@@ -26,11 +26,11 @@ function ChangeScrollingText:PLAYER_ENTERING_WORLD()
         SetCVar('floatingCombatTextPetSpellDamage', 0)
         SetCVar('floatingCombatTextCombatLogPeriodicSpells', 0)
     else
-        SetCVar('floatingCombatTextCombatHealing', 1)
+        SetCVar('floatingCombatTextCombatHealing', 0)
         SetCVar('floatingCombatTextCombatDamage', 1)
-        SetCVar('floatingCombatTextPetMeleeDamage', 1)
-        SetCVar('floatingCombatTextPetSpellDamage', 1)
-        SetCVar('floatingCombatTextCombatLogPeriodicSpells', 1)
+        SetCVar('floatingCombatTextPetMeleeDamage', 0)
+        SetCVar('floatingCombatTextPetSpellDamage', 0)
+        SetCVar('floatingCombatTextCombatLogPeriodicSpells', 0)
     end
 end
 
