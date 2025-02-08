@@ -23,12 +23,19 @@ function ChangeChat:PLAYER_ENTERING_WORLD()
 		local chatFrame = _G["ChatFrame" .. i]
 		chatFrame:SetClampedToScreen(false)
 		chatFrame:SetClampRectInsets(0, 0, 0, 0)
+		chatFrame:SetScale(1.1)
+
+		local chatFrameXTab = _G['ChatFrame' .. i .. 'Tab']
+		chatFrameXTab:SetScale(1.1)
 
 		local frame = _G['ChatFrame' .. i .. 'EditBox']
 		frame:ClearAllPoints()
 		frame:SetPoint('BOTTOMLEFT', frame.chatFrame, 'TOPLEFT', 0, 3)
 		frame:SetPoint('BOTTOMRIGHT', frame.chatFrame, 'TOPRIGHT', frame.chatFrame.ScrollBar:GetWidth(), 3)
+		frame:SetScale(1.1)
 	end
+
+	QuickJoinToastButton:SetScale(1.1)
 end
 
 function ChangeChat:OnEnable()

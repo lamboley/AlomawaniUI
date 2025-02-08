@@ -4,7 +4,7 @@ local ChangeQuestFrame = AlomawaniUI:NewModule('ChangeQuestFrame', 'AceEvent-3.0
 local defaults = {
 	profile = {
         enabled = true,
-		scale = 0.85,
+		scale = 0.9,
 	}
 }
 
@@ -19,10 +19,9 @@ function ChangeQuestFrame:OnInitialize()
 end
 
 function ChangeQuestFrame:PLAYER_ENTERING_WORLD()
-
-	-- CompactRaidFrameManager:UnregisterAllEvents()
-	-- CompactRaidFrameManager:HookScript("OnShow", function(s) s:Hide() end)
-	-- CompactRaidFrameManager:Hide()
+	CompactRaidFrameManager:UnregisterAllEvents()
+	CompactRaidFrameManager:HookScript("OnShow", function(s) s:Hide() end)
+	CompactRaidFrameManager:Hide()
 
 	MicroButtonAndBagsBar:UnregisterAllEvents()
 	MicroButtonAndBagsBar:HookScript("OnShow", function(s) s:Hide() end)

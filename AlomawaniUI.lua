@@ -42,7 +42,8 @@ end
 function AlomawaniUI:OnEnable()
 	SetCVar('cameraDistanceMaxZoomFactor', 2.6)
 	SetCVar('cameraIndirectVisibility', 1)
-	SetCVar('UIScale', 0.7111111111) -- UIScale = 768 / verticalResolution
+	--SetCVar('UIScale', 2160/3840) -- UIScale = 768 / 1440 SetCVar('UIScale', 768/2160) SetCVar('UIScale', 768/1440)
+	UIParent:SetScale(768/1440) -- X .67 -- Y .33
 end
 
 function AlomawaniUI:UpdateModuleConfigs()
