@@ -5,9 +5,19 @@ local defaults = {
 	profile = {
         enabled = true,
         useguild = false,
+        blacklist = {
+        },
 	}
 }
 
+local function IsInside(table, element)
+    for _, value in pairs(table) do
+      if value == element then return true end
+    end
+    return false
+end
+
+  
 function Vendors:OnInitialize()
 	self.db = AlomawaniUI.db:RegisterNamespace('Vendors', defaults)
 
@@ -32,7 +42,7 @@ function Vendors:MERCHANT_SHOW()
                 if itemID then
                     local containerInfo = C_Container.GetContainerItemInfo(bagID, slot)
                     if not containerInfo.isLocked and containerInfo.iconFileID then
-                        if (containerInfo.quality and containerInfo.quality == 0) then
+                        if (containerInfo.quality and containerInfo.quality == 0) or IsInside(self.db.profile.blacklist, containerInfo.itemID) then
                             C_Container.UseContainerItem(bagID, slot)
                         end
                     end

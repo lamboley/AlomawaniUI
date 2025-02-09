@@ -35,6 +35,31 @@ function Vendors:SetupOptions()
 				set = mySetterFunc,
 				get = myGetterFunc,
 			},
+			header2 = AlomawaniUI.Header(4, 'Blacklist'),
+			blacklist = {
+				type = 'input',
+				order = 5,
+				width = 'full',
+				name = '',
+				multiline = 16,
+				get = function()
+					local auras = {}
+					for _, aura in pairs(self.db.profile.blacklist) do
+						auras[#auras+1] = aura
+					end
+					return table.concat(auras, "\n" )
+				end,
+				set = function(_, value)
+					wipe(self.db.profile.blacklist)
+					local auras = { strsplit("\n", strtrim(value)) }
+					for _, name in pairs(auras) do
+						local aura = strtrim(name)
+						if #aura>0 then
+							table.insert(self.db.profile.blacklist, tonumber(aura) or aura)
+						end
+					end
+				end,
+			}
 		}
 
 		self.disabledoptions = {

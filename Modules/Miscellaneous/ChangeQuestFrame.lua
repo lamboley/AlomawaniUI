@@ -4,7 +4,7 @@ local ChangeQuestFrame = AlomawaniUI:NewModule('ChangeQuestFrame', 'AceEvent-3.0
 local defaults = {
 	profile = {
         enabled = true,
-		scale = 0.9,
+		scale = 1.0 ,
 	}
 }
 
