@@ -38,16 +38,11 @@ function ChangeQuestFrame:PLAYER_ENTERING_WORLD()
 		ObjectiveTrackerFrame:Hide()
 	elseif instanceType == 'party' or instanceType == 'raid' or instanceType == 'scenario' then
 		ObjectiveTrackerFrame:Show()
-		-- ObjectiveTrackerFrame:ToggleCollapsed()
 		ObjectiveTrackerFrame:SetCollapsed(true)
 	else
 		ObjectiveTrackerFrame:Show()
 		ObjectiveTrackerFrame:SetCollapsed(false)
 	end
-
-
-
-
 end
 
 function ChangeQuestFrame:OnEnable()

@@ -39,6 +39,7 @@ Modules\Miscellaneous\ChangeChat.lua
 Modules\Miscellaneous\ChangePortrait.lua
 Modules\Miscellaneous\Mouselook.lua
 Modules\Miscellaneous\ChangeScrollingText.lua
+Modules\Miscellaneous\AutoDelete.lua
 Modules\BattlePet.lua
 Modules\MoutSummonEnhanced.lua
 Modules\ProfileChooser.lua
@@ -62,3 +63,4 @@ Options\OptionsVoicing.lua
 Options\OptionsAlerts.lua
 Options\OptionsAutoDepositGuildBank.lua
 Options\OptionsBuffFrameFilter.lua
+Options\OptionsAutoDelete.lua

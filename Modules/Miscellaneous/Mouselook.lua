@@ -19,7 +19,7 @@ end
 
 function Mouselook:PLAYER_ENTERING_WORLD()
     WorldFrame:HookScript('OnMouseUp', function(_, button)
-        if button == 'RightButton' then
+        if button == "RightButton" and not IsMouseButtonDown('RightButton') then
             if InCombatLockdown() then
                 DisableRightClick()
             end
