@@ -52,9 +52,6 @@ function AutoDepositGuildBank:SetupOptions()
 				get = myGetterFunc,
 				set = mySetterFunc,
 			},
-
-
-			checkguildbank
 		}
 
 		self.disabledoptions = {

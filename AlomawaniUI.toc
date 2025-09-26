@@ -40,10 +40,12 @@ Modules\Miscellaneous\ChangePortrait.lua
 Modules\Miscellaneous\Mouselook.lua
 Modules\Miscellaneous\ChangeScrollingText.lua
 Modules\Miscellaneous\AutoDelete.lua
+Modules\Miscellaneous\ThichNhatHanh.lua
 Modules\BattlePet.lua
 Modules\MoutSummonEnhanced.lua
 Modules\ProfileChooser.lua
 Modules\Voicing.lua
+Modules\Fade.lua
 Modules\Alerts.lua
 Modules\AutoDepositGuildBank.lua
 Modules\BuffFrameFilter.lua
@@ -60,6 +62,7 @@ Options\OptionsMouselook.lua
 Options\OptionsBattlePet.lua
 Options\OptionsMoutSummonEnhanced.lua
 Options\OptionsVoicing.lua
+Options\OptionsFade.lua
 Options\OptionsAlerts.lua
 Options\OptionsAutoDepositGuildBank.lua
 Options\OptionsBuffFrameFilter.lua

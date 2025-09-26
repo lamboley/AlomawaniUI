@@ -22,9 +22,9 @@ function AlomawaniUI:Mount()
     else
         if MoutSummonEnhanced.masterRiding then
             local instanceType = select(2, IsInInstance())
-            if forcegroundmountinpvp and instanceType and instanceType == 'arena' then -- In Arena
+            if MoutSummonEnhanced.db.profile.forcegroundmountinarena and instanceType and instanceType == 'arena' then -- In Arena
                 C_MountJournal.SummonByID(tonumber(MoutSummonEnhanced.db.profile.groundmount))
-            elseif forcegroundmountinpvp and instanceType and instanceType == 'pvp' then -- In Battleground
+            elseif MoutSummonEnhanced.db.profile.forcegroundmountinbattleground and instanceType and instanceType == 'pvp' then -- In Battleground
                 C_MountJournal.SummonByID(tonumber(MoutSummonEnhanced.db.profile.groundmount))
             elseif not IsFlyableArea() then -- Can't fly here
                 C_MountJournal.SummonByID(tonumber(MoutSummonEnhanced.db.profile.groundmount))

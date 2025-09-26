@@ -12,12 +12,12 @@ local defaults = {
 
 local function IsInside(table, element)
     for _, value in pairs(table) do
-      if value == element then return true end
+        if value == element then return true end
     end
     return false
 end
 
-  
+
 function Vendors:OnInitialize()
 	self.db = AlomawaniUI.db:RegisterNamespace('Vendors', defaults)
 

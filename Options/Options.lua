@@ -66,6 +66,22 @@ local function generateOptions()
 						},
 					}
 				},
+				fade = {
+					order = 6,
+					type = "group",
+					name = 'Fade',
+					childGroups = "tab",
+					args = {
+						menu = {
+							order = 2,
+							type = 'group',
+							name = 'Menu',
+							arg = 'Menu',
+							args = {
+							},
+						},
+					}
+				},
 			},
 	}
 
